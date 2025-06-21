@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = 'http://127.0.0.1:2525';
+    const API_BASE_URL = 'http://127.0.0.1:8001';
 
     const problemTitle = document.getElementById('problem-title');
     const inputFields = document.getElementById('input-fields');
