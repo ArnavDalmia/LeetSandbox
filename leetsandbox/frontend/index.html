@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetSandbox - Problems</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        body { padding: 2em; }
+        a { text-decoration: none; }
+        .problem-item { margin-bottom: 0.5rem; }
+        .capitalize { text-transform: capitalize; }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>LeetSandbox</h1>
+            <p>Select a problem to begin.</p>
+        </header>
+        <section>
+            <h2>Available Problems</h2>
+            <div id="problem-list" aria-busy="true">Loading problems...</div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const API_URL = 'http://127.0.0.1:8000/problems';
+            const problemList = document.getElementById('problem-list');
+
+            fetch(API_URL)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(problems => {
+                    problemList.innerHTML = ''; // Clear loading message
+                    problemList.setAttribute('aria-busy', 'false');
+                    if (problems.length === 0) {
+                        problemList.innerHTML = '<p>No problems available. Is the backend running?</p>';
+                        return;
+                    }
+                    const ul = document.createElement('ul');
+                    problems.forEach(problem => {
+                        const li = document.createElement('li');
+                        li.className = 'problem-item';
+                        const a = document.createElement('a');
+                        a.href = `problem.html?slug=${problem.slug}`;
+                        a.className = 'capitalize';
+                        a.textContent = problem.slug.replace(/-/g, ' ');
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                    });
+                    problemList.appendChild(ul);
+                })
+                .catch(error => {
+                    console.error('Error fetching problems:', error);
+                    problemList.setAttribute('aria-busy', 'false');
+                    problemList.innerHTML = `
+                        <article style="background-color: var(--pico-muted-border-color);">
+                            <strong>Failed to load problems.</strong>
+                            <p>Please ensure the backend server is running via <code>make dev</code> and is accessible at <code>${API_URL}</code>.</p>
+                        </article>`;
+                });
+        });
+    </script>
+</body>
+</html> 

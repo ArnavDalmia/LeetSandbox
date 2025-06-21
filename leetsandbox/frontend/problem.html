@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetSandbox</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        main.container {
+            max-width: 800px;
+        }
+        #output {
+            background-color: var(--pico-card-background-color);
+            border: 1px solid var(--pico-card-border-color);
+            padding: 1rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .capitalize {
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1 id="problem-title" class="capitalize">Loading Problem...</h1>
+            <a href="index.html">← Back to problems</a>
+        </header>
+
+        <section>
+            <form id="run-form">
+                <h2>Inputs</h2>
+                <div id="input-fields" aria-busy="true"></div>
+                <button type="submit" id="run-button">Run</button>
+            </form>
+        </section>
+
+        <section id="output-container">
+            <h2>Output</h2>
+            <pre id="output">Click "Run" to see the result.</pre>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html> 
