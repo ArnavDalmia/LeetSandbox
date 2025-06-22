@@ -1,6 +1,6 @@
 import time
 import importlib
-import timeout_decorator
+import asyncio
 from typing import Dict, Any
 
 def _slug_to_camel_case(slug: str) -> str:
@@ -10,7 +10,8 @@ def _slug_to_camel_case(slug: str) -> str:
 
 def _execute_solution(slug: str, inputs: Dict[str, Any]) -> Any:
     """
-    Dynamically imports the solution module and executes its main function.
+    Synchronously imports and runs the solution's main function.
+    This function is designed to be run in a separate thread.
     """
     module_name = _slug_to_camel_case(slug)
     try:
@@ -24,26 +25,27 @@ def _execute_solution(slug: str, inputs: Dict[str, Any]) -> Any:
 
     return module.main(**inputs)
 
-# We can keep the timeout decorator for safety
-@timeout_decorator.timeout(2, use_signals=False)
-def _timed_execute(slug: str, inputs: Dict[str, Any]) -> Any:
-    return _execute_solution(slug, inputs)
 
-def safe_exec(slug: str, inputs: Dict[str, Any]) -> Dict[str, Any]:
+async def safe_exec(slug: str, inputs: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Executes the main function for a given slug with a 2-second timeout.
+    Executes the main function for a given slug with a 2-second timeout using asyncio.
     """
     start_time = time.time()
     try:
-        result = _timed_execute(slug, inputs)
+        # Run the synchronous (blocking) solution in a separate thread to avoid
+        # freezing the server, and apply a timeout to the operation.
+        result = await asyncio.wait_for(
+            asyncio.to_thread(_execute_solution, slug, inputs),
+            timeout=2.0
+        )
         exec_ms = int((time.time() - start_time) * 1000)
         return {
             "status": "OK",
-            "stdout": str(result), # The result from main() is the stdout
+            "stdout": str(result),
             "stderr": "",
             "exec_ms": exec_ms,
         }
-    except timeout_decorator.TimeoutError:
+    except asyncio.TimeoutError:
         return {
             "status": "ERROR",
             "stderr": "Execution timed out after 2 seconds.",

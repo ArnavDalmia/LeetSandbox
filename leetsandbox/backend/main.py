@@ -65,6 +65,6 @@ async def run_code(request: RunRequest):
             exec_ms=0,
         )
 
-    # The new runner takes the slug directly, not the code
-    result_dict = safe_exec(request.slug, request.inputs)
+    # The runner is now async, so we must await its result
+    result_dict = await safe_exec(request.slug, request.inputs)
     return RunResponse(**result_dict) 
