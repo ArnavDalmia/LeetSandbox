@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeetSandbox</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         main.container {
             max-width: 800px;
@@ -22,10 +23,20 @@
     </style>
 </head>
 <body>
+    <nav class="container-fluid">
+        <ul>
+            <li><a href="index.html" class="contrast"><strong>LeetSandbox</strong></a></li>
+        </ul>
+        <ul>
+            <li><a href="problemList.html">Problem List</a></li>
+            <li><a href="#" role="button" class="secondary">Request Problems</a></li>
+        </ul>
+    </nav>
+
     <main class="container">
         <header>
             <h1 id="problem-title" class="capitalize">Loading Problem...</h1>
-            <a href="index.html">← Back to problems</a>
+            <a href="problemList.html">← Back to problems</a>
         </header>
 
         <section>
@@ -41,6 +52,14 @@
             <pre id="output">Click "Run" to see the result.</pre>
         </section>
     </main>
+    
+    <footer class="container">
+        <small>
+            <a href="#">About</a> • <a href="#">Contact</a> • <a href="#">Privacy Policy</a>
+            <br>
+            © 2024 LeetSandbox
+        </small>
+    </footer>
 
     <script src="main.js"></script>
 </body>

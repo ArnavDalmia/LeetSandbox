@@ -3,69 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LeetSandbox - Problems</title>
+    <title>LeetSandbox - Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <style>
-        body { padding: 2em; }
-        a { text-decoration: none; }
-        .problem-item { margin-bottom: 0.5rem; }
-        .capitalize { text-transform: capitalize; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="container-fluid">
+        <ul>
+            <li><a href="index.html" class="contrast"><strong>LeetSandbox</strong></a></li>
+        </ul>
+        <ul>
+            <li><a href="problemList.html">Problem List</a></li>
+            <li><a href="#" role="button" class="secondary">Request Problems</a></li>
+        </ul>
+    </nav>
+
     <main class="container">
-        <header>
-            <h1>LeetSandbox</h1>
-            <p>Select a problem to begin.</p>
-        </header>
-        <section>
-            <h2>Available Problems</h2>
-            <div id="problem-list" aria-busy="true">Loading problems...</div>
+        <section class="hero">
+            <h1>Leet<span class="hero-sandbox">Sandbox</span></h1>
+            <p>Test your own cases. Spot patterns. Master LeetCode.</p>
+            <a href="problemList.html" role="button" class="contrast">Browse Problems</a>
         </section>
+
+        <div class="grid">
+            <article>
+                <h3>Comprehensive Test Cases</h3>
+                <p>Go beyond the 2-3 examples provided. Create dozens of test cases to understand problem patterns and edge cases.</p>
+            </article>
+            <article>
+                <h3>Deep Problem Insights</h3>
+                <p>Understand what makes problems tick by examining their test case distributions and constraints.</p>
+            </article>
+        </div>
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const API_URL = 'http://127.0.0.1:8001/problems';
-            const problemList = document.getElementById('problem-list');
-
-            fetch(API_URL)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(problems => {
-                    problemList.innerHTML = ''; // Clear loading message
-                    problemList.setAttribute('aria-busy', 'false');
-                    if (problems.length === 0) {
-                        problemList.innerHTML = '<p>No problems available. Is the backend running?</p>';
-                        return;
-                    }
-                    const ul = document.createElement('ul');
-                    problems.forEach(problem => {
-                        const li = document.createElement('li');
-                        li.className = 'problem-item';
-                        const a = document.createElement('a');
-                        a.href = `problem.html?slug=${problem.slug}`;
-                        a.className = 'capitalize';
-                        a.textContent = problem.slug.replace(/-/g, ' ');
-                        li.appendChild(a);
-                        ul.appendChild(li);
-                    });
-                    problemList.appendChild(ul);
-                })
-                .catch(error => {
-                    console.error('Error fetching problems:', error);
-                    problemList.setAttribute('aria-busy', 'false');
-                    problemList.innerHTML = `
-                        <article style="background-color: var(--pico-muted-border-color);">
-                            <strong>Failed to load problems.</strong>
-                            <p>Please ensure the backend server is running via <code>make dev</code> and is accessible at <code>${API_URL}</code>.</p>
-                        </article>`;
-                });
-        });
-    </script>
+    <footer class="container">
+        <small>
+            <a href="#">About</a> • <a href="#">Contact</a> • <a href="#">Privacy Policy</a>
+            <br>
+            © 2024 LeetSandbox
+        </small>
+    </footer>
 </body>
 </html> 

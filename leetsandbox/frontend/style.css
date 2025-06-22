@@ -1,0 +1,51 @@
+/* General Body & Theme */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* Navbar */
+nav {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Homepage Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-sandbox {
+    color: #007bff; /* A nice, contrasting blue */
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--pico-muted-color);
+    margin-bottom: 2rem;
+}
+
+/* Info Cards */
+.grid {
+    margin-top: 3rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: auto;
+    background-color: var(--pico-card-background-color);
+    border-top: 1px solid var(--pico-card-border-color);
+} 

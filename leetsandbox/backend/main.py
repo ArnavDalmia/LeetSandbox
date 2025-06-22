@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 # Use absolute imports for clarity and robustness
 from backend.runner import safe_exec
@@ -24,6 +24,7 @@ app.add_middleware(
 class ProblemInfo(BaseModel):
     slug: str
     params: Dict[str, str]
+    number: Optional[int] = None
 
 
 class RunRequest(BaseModel):
@@ -45,7 +46,11 @@ async def get_problems():
     parameter definitions, so the frontend can build submission forms.
     """
     return [
-        {"slug": slug, "params": data["params"]}
+        {
+            "slug": slug,
+            "params": data["params"],
+            "number": data.get("number"),
+        }
         for slug, data in PROBLEMS.items()
     ]
 
