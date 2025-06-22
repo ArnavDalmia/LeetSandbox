@@ -3,27 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LeetSandbox</title>
+    <title>LeetSandbox - Request a Problem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        main.container {
-            max-width: 800px;
-        }
-        #output {
-            background-color: var(--pico-card-background-color);
-            border: 1px solid var(--pico-card-border-color);
-            padding: 1rem;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        .capitalize {
-            text-transform: capitalize;
-        }
-    </style>
 </head>
 <body>
     <nav class="container-fluid">
@@ -41,25 +26,15 @@
     </nav>
 
     <main class="container">
-        <header>
-            <h1 id="problem-title" class="capitalize">Loading Problem...</h1>
-            <a href="problemList.html">← Back to problems</a>
+        <header style="text-align: center; padding: 2rem 0;">
+            <h1>Request a Problem</h1>
+            <p>Have a problem you'd like to see added? Fill out the form below!</p>
         </header>
-
-        <section>
-            <form id="run-form">
-                <h2>Inputs</h2>
-                <div id="input-fields" aria-busy="true"></div>
-                <button type="submit" id="run-button">Run</button>
-            </form>
-        </section>
-
-        <section id="output-container">
-            <h2>Output</h2>
-            <pre id="output">Click "Run" to see the result.</pre>
-        </section>
+        
+        <script type="text/javascript" src="https://form.jotform.com/jsform/251726341959061"></script>
+        
     </main>
-    
+
     <footer class="container">
         <small>
             <a href="#">About</a> • <a href="#">Contact</a> • <a href="#">Privacy Policy</a>
@@ -67,7 +42,5 @@
             © 2024 LeetSandbox
         </small>
     </footer>
-
-    <script src="main.js"></script>
 </body>
 </html> 
