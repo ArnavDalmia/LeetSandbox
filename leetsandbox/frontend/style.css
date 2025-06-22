@@ -26,10 +26,10 @@ nav {
     align-items: center;
 }
 .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
     font-weight: 600;
+}
+.brand-highlight {
+    color: var(--primary-blue);
 }
 .nav-brand img {
     height: 150px;
@@ -140,7 +140,7 @@ details ul {
 /* Style form inputs for dark theme */
 .form-container input,
 .form-container textarea {
-    background-color: #0d1b2a; /* Dark background */
+    background-color: #253e59; /* Dark background */
     color: #f0f0f0; /* Light text */
     border: 1px solid #3a506b;
     border-radius: 8px;
