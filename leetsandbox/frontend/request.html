@@ -28,10 +28,31 @@
     <main class="container">
         <header style="text-align: center; padding: 2rem 0;">
             <h1>Request a Problem</h1>
-            <p>Have a problem you'd like to see added? Fill out the form below!</p>
+            <p>If you have any problems you would like added to the platform please create a request below. We are always looking for problems and things to expand the platform. Thanks in advance! PS: It can be any source not just leetcode.</p>
         </header>
         
-        <script type="text/javascript" src="https://form.jotform.com/jsform/251726341959061"></script>
+        <div class="form-container">
+            <p>Have a problem you'd like to see added? Fill out the form below!</p>
+            <hr>
+            <form action="https://formspree.io/f/mldnpdln" method="POST">
+                <label for="name">Name</label>
+                <div class="form-row">
+                    <input type="text" name="firstName" placeholder="First Name" required>
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                </div>
+
+                <label for="email">Email *</label>
+                <input type="email" name="email" placeholder="example@example.com" required>
+
+                <label for="problem-link">Problem Link</label>
+                <input type="url" name="problemLink" placeholder="https://example.com/problem">
+                
+                <label for="details">If you can't provide a link, please enter some details here. We will do our best!</label>
+                <textarea name="details" rows="5"></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
         
     </main>
 

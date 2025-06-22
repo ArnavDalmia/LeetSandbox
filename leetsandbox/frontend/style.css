@@ -111,6 +111,52 @@ details ul {
     margin-left: 1.5rem;
 }
 
+/* Request Form Styling */
+.form-container {
+    background-color: #5580ab; /* Steel grey background */
+    color: #1b2f45; /* Dark blue text for contrast */
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+/* Explicitly set color for labels and paragraphs in the form for readability */
+.form-container label,
+.form-container p {
+    color: #ffffff;
+}
+
+.form-container hr {
+    margin: 1.5rem 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Style form inputs for dark theme */
+.form-container input,
+.form-container textarea {
+    background-color: #0d1b2a; /* Dark background */
+    color: #f0f0f0; /* Light text */
+    border: 1px solid #3a506b;
+    border-radius: 8px;
+}
+
+/* Style the placeholder text to be a dimmer grey */
+.form-container ::placeholder {
+  color: #a9a9a9;
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(86, 207, 225, 0.2);
+}
+
 /* Footer */
 footer {
     text-align: center;
