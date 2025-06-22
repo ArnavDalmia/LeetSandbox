@@ -15,8 +15,7 @@
         <ul>
             <li>
                 <a href="index.html" class="contrast nav-brand">
-                    <img src="assets/logo.png" alt="LeetSandbox Logo">
-                    <strong>LeetSandbox</strong>
+                    LeetSandbox
                 </a>
             </li>
         </ul>
@@ -31,8 +30,8 @@
             <h1>Available Problems</h1>
             <p>Select a problem to begin.</p>
         </header>
-        <section>
-            <div id="problem-list" aria-busy="true">Loading problems...</div>
+        <section id="problem-folders-container" aria-busy="true">
+            <p>Loading problems...</p>
         </section>
     </main>
 
@@ -47,48 +46,71 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const API_URL = 'http://127.0.0.1:8001/problems';
-            const problemList = document.getElementById('problem-list');
+            const container = document.getElementById('problem-folders-container');
 
             fetch(API_URL)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     return response.json();
                 })
                 .then(problems => {
-                    problemList.innerHTML = ''; // Clear loading message
-                    problemList.setAttribute('aria-busy', 'false');
+                    container.innerHTML = '';
+                    container.removeAttribute('aria-busy');
+
+                    const leetCodeProblems = problems.filter(p => p.originLeetCode);
+                    const otherProblems = problems.filter(p => !p.originLeetCode);
+
                     if (problems.length === 0) {
-                        problemList.innerHTML = '<p>No problems available. Is the backend running?</p>';
+                        container.innerHTML = '<p>No problems available. Is the backend running?</p>';
                         return;
                     }
-                    const ul = document.createElement('ul');
-                    problems.forEach(problem => {
-                        const li = document.createElement('li');
-                        const a = document.createElement('a');
-                        a.href = `problem.html?slug=${problem.slug}`;
-                        
-                        let problemName = problem.slug.replace(/-/g, ' ');
-                        if (problem.number) {
-                            problemName = `${problem.number}. ${problemName}`;
-                        }
-                        a.textContent = problemName;
-                        
-                        li.appendChild(a);
-                        ul.appendChild(li);
-                    });
-                    problemList.appendChild(ul);
+
+                    if (leetCodeProblems.length > 0) {
+                        container.appendChild(createFolder('LeetCode', leetCodeProblems));
+                    }
+
+                    if (otherProblems.length > 0) {
+                        container.appendChild(createFolder('Others', otherProblems));
+                    }
                 })
-                .catch(error => {
-                    console.error('Error fetching problems:', error);
-                    problemList.setAttribute('aria-busy', 'false');
-                    problemList.innerHTML = `
-                        <article style="background-color: var(--pico-muted-border-color);">
-                            <strong>Failed to load problems.</strong>
-                            <p>Please ensure the backend server is running via <code>make dev</code> and is accessible at <code>${API_URL}</code>.</p>
-                        </article>`;
+                .catch(handleError);
+
+            function createFolder(title, problems) {
+                const details = document.createElement('details');
+                details.open = true; // Open by default
+
+                const summary = document.createElement('summary');
+                summary.textContent = title;
+                details.appendChild(summary);
+
+                const ul = document.createElement('ul');
+                problems.forEach(problem => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `problem.html?slug=${problem.slug}`;
+                    
+                    let problemName = problem.slug.replace(/-/g, ' ');
+                    if (problem.number) {
+                        problemName = `${problem.number}. ${problemName}`;
+                    }
+                    a.textContent = problemName;
+                    
+                    li.appendChild(a);
+                    ul.appendChild(li);
                 });
+                details.appendChild(ul);
+                return details;
+            }
+
+            function handleError(error) {
+                console.error('Error fetching problems:', error);
+                container.removeAttribute('aria-busy');
+                container.innerHTML = `
+                    <article style="background-color: var(--pico-muted-border-color);">
+                        <strong>Failed to load problems.</strong>
+                        <p>Please ensure the backend server is running via <code>make dev</code> and is accessible at <code>${API_URL}</code>.</p>
+                    </article>`;
+            }
         });
     </script>
 </body>

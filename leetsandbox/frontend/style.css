@@ -32,13 +32,14 @@ nav {
     font-weight: 600;
 }
 .nav-brand img {
-    height: 32px;
+    height: 150px;
 }
 
 /* Homepage Hero Section */
 .hero {
     text-align: center;
     padding: 5rem 1rem;
+    gap: 0.5rem;
 }
 
 .hero h1 {
@@ -65,7 +66,49 @@ nav {
 
 /* Info Cards */
 .grid {
-    margin-top: 3rem;
+    margin-top: 4rem;
+    gap: 2rem;
+}
+
+.info-card {
+    text-align: center;
+    background-color: #1b2f45; /* Lighter blue/grey for contrast */
+    border: 1px solid #3a506b;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.info-card h3 {
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background-color: #3a506b; /* Icon background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+}
+
+.info-card-icon svg {
+    stroke-width: 1.5;
+}
+
+/* Problem List Folders */
+details summary {
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+details ul {
+    margin-left: 1.5rem;
 }
 
 /* Footer */
@@ -75,4 +118,10 @@ footer {
     margin-top: auto;
     background-color: var(--pico-card-background-color);
     border-top: 1px solid var(--pico-card-border-color);
+}
+
+/* Fix button font */
+button, [role="button"] {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 } 

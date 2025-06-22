@@ -25,6 +25,8 @@ class ProblemInfo(BaseModel):
     slug: str
     params: Dict[str, str]
     number: Optional[int] = None
+    originLeetCode: bool
+    link: Optional[str] = None
 
 
 class RunRequest(BaseModel):
@@ -50,6 +52,8 @@ async def get_problems():
             "slug": slug,
             "params": data["params"],
             "number": data.get("number"),
+            "originLeetCode": data.get("originLeetCode", False),
+            "link": data.get("link"),
         }
         for slug, data in PROBLEMS.items()
     ]

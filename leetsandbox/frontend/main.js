@@ -26,6 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!problem) {
                 throw new Error(`Problem with slug "${slug}" not found.`);
             }
+            
+            // If a link exists, make the title a clickable link
+            if (problem.link) {
+                const link = document.createElement('a');
+                link.href = problem.link;
+                link.target = '_blank'; // Open in new tab
+                link.rel = 'noopener noreferrer';
+                link.textContent = problemTitle.textContent;
+                problemTitle.innerHTML = '';
+                problemTitle.appendChild(link);
+            }
+
             buildForm(problem.params);
         })
         .catch(handleError);
