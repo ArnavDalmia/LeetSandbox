@@ -39,27 +39,8 @@ Minimum eating speed (bananas per hour): {result}"""
     output += f"\nTotal hours needed: {total_hours}"
     output += f"\nWithin time limit: {'✓' if total_hours <= h else '✗'}"
     
-    # Show binary search process
-    output += "\n\nBinary search process:"
-    left, right = 1, max(piles)
-    step = 1
-    
-    while left <= right:
-        k = (left + right) // 2
-        total = sum(math.ceil(pile / k) for pile in piles)
-        
-        output += f"\n  Step {step}: k={k}, total_hours={total}"
-        
-        if total <= h:
-            output += f"\n    {total} <= {h}: Can finish in time, try slower speed"
-            right = k - 1
-        else:
-            output += f"\n    {total} > {h}: Too slow, need faster speed"
-            left = k + 1
-        step += 1
-    
     return output
 
 # EXAMPLE
 # main([3, 6, 7, 11], 8)
-# main([30, 11, 23, 4, 20], 5)
+#print(main([3,6,7,11], 8))

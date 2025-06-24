@@ -13,7 +13,7 @@ PROBLEMS = {
     },
     "reverse-string": {
         "number": 344,
-        "originLeetCode": True,
+        "originLeetCode": False,
         "params": {"s": "str"},
         "link": "https://leetcode.com/problems/reverse-string/",
     },
@@ -23,5 +23,10 @@ PROBLEMS = {
         "params": {"s": "str"},
         "link": "https://leetcode.com/problems/valid-parentheses/",
     },
-
+    "KokoEatingBananas": {
+        "number": 875,
+        "originLeetCode": True,
+        "params": {"piles": "List[int]", "h": "int"},
+        "link": "https://leetcode.com/problems/koko-eating-bananas/",
+    },
 } 
