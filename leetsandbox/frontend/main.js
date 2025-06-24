@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE_URL = 'http://127.0.0.1:8001';
+    // Dynamically set API URL based on hostname
+    const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+    const API_BASE_URL = isLocal ? 'http://127.0.0.1:8001' : 'https://leetsandbox-api.onrender.com'; // <-- IMPORTANT
 
     const problemTitle = document.getElementById('problem-title');
     const inputFields = document.getElementById('input-fields');
