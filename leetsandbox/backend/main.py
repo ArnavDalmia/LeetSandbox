@@ -15,7 +15,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://127.0.0.1:5500",  # For local development (or your port)
-        "https://arnavdalmia.github.io/LeetSandbox/", # Your live frontend URL
+        "https://arnavdalmia.github.io", # Your live frontend URL (no path/slash)
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST"],
