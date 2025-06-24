@@ -12,30 +12,34 @@ def dailyTemperaturesFunctionality(temperatures):
 
 def main(temperatures):
     result = dailyTemperaturesFunctionality(temperatures)
-    print(f"Daily temperatures: {temperatures}")
-    print(f"Days to wait for warmer temperature: {result}")
+    
+    output = f"""Daily temperatures: {temperatures}
+Days to wait for warmer temperature: {result}
+
+Stack-based process:"""
     
     # Show the process step by step
-    print("Stack-based process:")
     stack = []
     res = [0] * len(temperatures)
     
     for i, temp in enumerate(temperatures):
-        print(f"  Day {i}: Temperature {temp}")
+        output += f"\n  Day {i}: Temperature {temp}"
         
         # Process stack while current temp is warmer
         while stack and temp > stack[-1][0]:
             prev_temp, prev_day = stack.pop()
             days_to_wait = i - prev_day
             res[prev_day] = days_to_wait
-            print(f"    Found warmer day for day {prev_day} (temp {prev_temp}): {days_to_wait} days")
+            output += f"\n    Found warmer day for day {prev_day} (temp {prev_temp}): {days_to_wait} days"
         
         # Add current day to stack
         stack.append((temp, i))
-        print(f"    Stack: {[(t, d) for t, d in stack]}")
-        print(f"    Result so far: {res}")
+        output += f"\n    Stack: {[(t, d) for t, d in stack]}"
+        output += f"\n    Result so far: {res}"
     
-    print(f"Final result: {res}")
+    output += f"\nFinal result: {res}"
+    
+    return output
 
 # EXAMPLE
 # main([73, 74, 75, 71, 69, 72, 76, 73])

@@ -42,8 +42,8 @@ def create_linked_list(values):
     return head
 
 def main(list1_values, list2_values):
-    print(f"List 1: {list1_values}")
-    print(f"List 2: {list2_values}")
+    output = f"""List 1: {list1_values}
+List 2: {list2_values}"""
     
     # Create linked lists
     list1 = create_linked_list(list1_values)
@@ -52,7 +52,9 @@ def main(list1_values, list2_values):
     # Merge the lists
     merged = mergeTwoListsFunctionality(list1, list2)
     merged_values = print_list(merged)
-    print(f"Merged sorted list: {merged_values}")
+    output += f"\nMerged sorted list: {merged_values}"
+    
+    return output
 
 # EXAMPLE
 # main([1, 2, 4], [1, 3, 4])

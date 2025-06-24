@@ -37,10 +37,14 @@ def groupAnagramsFunctionality(strs):
 
 def main(strs):
     result = groupAnagramsFunctionality(strs)
-    print(f"Input strings: {strs}")
-    print("Grouped anagrams:")
+    
+    output = f"""Input strings: {strs}
+Grouped anagrams:"""
+    
     for i, group in enumerate(result):
-        print(f"  Group {i + 1}: {group}")
+        output += f"\n  Group {i + 1}: {group}"
+    
+    return output
 
 # EXAMPLE
 # main(["eat", "tea", "tan", "ate", "nat", "bat"])

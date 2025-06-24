@@ -8,7 +8,7 @@ PROBLEMS = {
     "TwoSum(II)": {
         "number": 167,
         "originLeetCode": True,
-        "params": {"numbers": "List[int]", "target": "int"},
+        "params": {"nums": "List[int]", "target": "int"},
         "link": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description",
     },
     "reverse-string": {

@@ -16,12 +16,16 @@ def maxProfitFunctionality(prices):
 
 def main(prices):
     result = maxProfitFunctionality(prices)
-    print(f"Stock prices: {prices}")
-    print(f"Maximum profit: {result}")
+    
+    output = f"""Stock prices: {prices}
+Maximum profit: {result}"""
+    
     if result > 0:
-        print(f"Best strategy: Buy low, sell high for ${result} profit")
+        output += f"\nBest strategy: Buy low, sell high for ${result} profit"
     else:
-        print("No profit possible with this price sequence")
+        output += "\nNo profit possible with this price sequence"
+    
+    return output
 
 # EXAMPLE
 # main([7, 1, 5, 3, 6, 4])

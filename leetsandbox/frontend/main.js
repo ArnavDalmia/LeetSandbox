@@ -53,16 +53,25 @@ document.addEventListener('DOMContentLoaded', () => {
             label.textContent = `${name} (${type}):`;
 
             let input;
-            if (type.toLowerCase().includes('list') || type.toLowerCase().includes('array')) {
+            const lowerType = type.toLowerCase();
+
+            if (lowerType.includes('list') || lowerType.includes('array')) {
                 input = document.createElement('textarea');
-                input.placeholder = 'e.g., [1, 2, "hello"]';
+                // Provide a more relevant placeholder based on the list's type
+                if (lowerType.includes('int')) {
+                    input.placeholder = 'e.g., [1, 2, 3]';
+                } else if (lowerType.includes('str')) {
+                    input.placeholder = 'e.g., ["a", "b", "c"]';
+                } else {
+                    input.placeholder = 'e.g., [1, "item", 3]';
+                }
             } else {
                 input = document.createElement('input');
                 input.type = 'text';
-                if (type.toLowerCase() === 'int') {
+                if (lowerType === 'int') {
                     input.placeholder = 'e.g., 123';
                 } else {
-                     input.placeholder = 'e.g., "some text"';
+                     input.placeholder = 'e.g., "hello world"';
                 }
             }
             input.id = `param-${name}`;

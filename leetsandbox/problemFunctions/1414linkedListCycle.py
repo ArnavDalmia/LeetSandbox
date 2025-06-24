@@ -65,14 +65,16 @@ def main(values, cycle_pos=-1):
     head = create_linked_list_with_cycle(values, cycle_pos)
     result = linkedListCycleFunctionality(head)
     
-    print(f"List values: {values}")
+    output = f"List values: {values}\n"
     if cycle_pos >= 0:
-        print(f"Cycle at position: {cycle_pos}")
+        output += f"Cycle at position: {cycle_pos}\n"
     else:
-        print("No cycle")
+        output += "No cycle\n"
     
-    print(f"List structure: {print_list_with_cycle_info(head)}")
-    print(f"Has cycle: {result}")
+    output += f"List structure: {print_list_with_cycle_info(head)}\n"
+    output += f"Has cycle: {result}"
+    
+    return output
 
 # EXAMPLE
 # main([3, 2, 0, -4], 1)  # Cycle back to position 1

@@ -38,16 +38,18 @@ def create_linked_list(values):
     return head
 
 def main(values):
-    print(f"Original list: {values}")
+    output = f"Original list: {values}\n"
     
     # Create linked list
     head = create_linked_list(values)
-    print(f"Created linked list: {print_list(head)}")
+    output += f"Created linked list: {print_list(head)}\n"
     
     # Reverse the list
     reversed_head = reverseListFunctionality(head)
     reversed_values = print_list(reversed_head)
-    print(f"Reversed linked list: {reversed_values}")
+    output += f"Reversed linked list: {reversed_values}"
+    
+    return output
 
 # EXAMPLE
 # main([1, 2, 3, 4, 5])

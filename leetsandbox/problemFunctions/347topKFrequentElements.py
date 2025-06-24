@@ -14,18 +14,21 @@ def topKFrequentFunctionality(nums, k):
 
 def main(nums, k):
     result = topKFrequentFunctionality(nums, k)
-    print(f"Array: {nums}")
-    print(f"K: {k}")
-    print(f"Top {k} frequent elements: {result}")
+    
+    output = f"""Array: {nums}
+K: {k}
+Top {k} frequent elements: {result}"""
     
     # Show frequency breakdown
     values = {}
     for num in nums:
         values[num] = values.get(num, 0) + 1
     sorted_dict_desc = dict(sorted(values.items(), key=lambda item: item[1], reverse=True))
-    print("Frequency breakdown:")
+    output += "\nFrequency breakdown:"
     for num, freq in sorted_dict_desc.items():
-        print(f"  {num}: {freq} times")
+        output += f"\n  {num}: {freq} times"
+    
+    return output
 
 # EXAMPLE
 # main([1, 1, 1, 2, 2, 3], 2)

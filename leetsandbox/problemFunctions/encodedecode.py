@@ -17,21 +17,23 @@ def decodeFunctionality(s):
     return tempList
 
 def main(strs):
-    print(f"Original list: {strs}")
+    output = f"Original list: {strs}\n"
     
     # Encode
     encoded = encodeFunctionality(strs)
-    print(f"Encoded string: '{encoded}'")
+    output += f"Encoded string: '{encoded}'\n"
     
     # Decode
     decoded = decodeFunctionality(encoded)
-    print(f"Decoded list: {decoded}")
+    output += f"Decoded list: {decoded}\n"
     
     # Verify
     if strs == decoded:
-        print("✓ Encode/Decode successful!")
+        output += "✓ Encode/Decode successful!"
     else:
-        print("✗ Encode/Decode failed!")
+        output += "✗ Encode/Decode failed!"
+    
+    return output
 
 # EXAMPLE
 # main(["lint", "code", "love", "you"])

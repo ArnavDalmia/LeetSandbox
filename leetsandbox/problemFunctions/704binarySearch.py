@@ -15,12 +15,16 @@ def binarySearchFunctionality(nums, target):
 
 def main(nums, target):
     result = binarySearchFunctionality(nums, target)
-    print(f"Array: {nums}")
-    print(f"Target: {target}")
+    
+    output = f"""Array: {nums}
+Target: {target}"""
+    
     if result != -1:
-        print(f"Result: Target found at index {result}")
+        output += f"\nResult: Target found at index {result}"
     else:
-        print("Result: Target not found")
+        output += "\nResult: Target not found"
+    
+    return output
 
 # EXAMPLE
 # main([-1, 0, 3, 5, 9, 12], 9)

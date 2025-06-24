@@ -17,8 +17,9 @@ def longestConsecutiveFunctionality(nums):
 
 def main(nums):
     result = longestConsecutiveFunctionality(nums)
-    print(f"Array: {nums}")
-    print(f"Longest consecutive sequence length: {result}")
+    
+    output = f"""Array: {nums}
+Longest consecutive sequence length: {result}"""
     
     # Show the consecutive sequences found
     if nums:
@@ -34,9 +35,11 @@ def main(nums):
                     current_sequence.append(current_num)
                 sequences.append(current_sequence)
         
-        print("Consecutive sequences found:")
+        output += "\nConsecutive sequences found:"
         for seq in sorted(sequences, key=len, reverse=True):
-            print(f"  {seq} (length: {len(seq)})")
+            output += f"\n  {seq} (length: {len(seq)})"
+    
+    return output
 
 # EXAMPLE
 # main([100, 4, 200, 1, 3, 2])

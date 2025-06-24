@@ -22,14 +22,18 @@ def productExceptSelfFunctionality(nums):
 
 def main(nums):
     result = productExceptSelfFunctionality(nums)
-    print(f"Input array: {nums}")
-    print(f"Product of array except self: {result}")
+    
+    output = f"""Input array: {nums}
+Product of array except self: {result}
+
+Explanation:"""
     
     # Show explanation
-    print("Explanation:")
     for i in range(len(nums)):
         others = [nums[j] for j in range(len(nums)) if j != i]
-        print(f"  Index {i}: product of {others} = {result[i]}")
+        output += f"\n  Index {i}: product of {others} = {result[i]}"
+    
+    return output
 
 # EXAMPLE
 # main([1, 2, 3, 4])

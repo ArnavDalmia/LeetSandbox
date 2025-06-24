@@ -18,34 +18,38 @@ def findMinInRotatedSortedArrayFunctionality(nums):
 
 def main(nums):
     result = findMinInRotatedSortedArrayFunctionality(nums)
-    print(f"Rotated sorted array: {nums}")
-    print(f"Minimum element: {result}")
+    
+    output = f"""Rotated sorted array: {nums}
+Minimum element: {result}
+
+Binary search process:"""
     
     # Show the binary search process
-    print("Binary search process:")
     l, r = 0, len(nums) - 1
     result_track = nums[0]
     step = 1
     
     while l <= r:
-        print(f"  Step {step}: l={l}, r={r}, current_min={result_track}")
+        output += f"\n  Step {step}: l={l}, r={r}, current_min={result_track}"
         
         if nums[l] < nums[r]:
             result_track = min(result_track, nums[l])
-            print(f"  Array portion is sorted, min is {nums[l]}")
+            output += f"\n  Array portion is sorted, min is {nums[l]}"
             break
             
         m = (l + r) // 2
         result_track = min(result_track, nums[m])
-        print(f"  Middle index {m}, value {nums[m]}, updated min: {result_track}")
+        output += f"\n  Middle index {m}, value {nums[m]}, updated min: {result_track}"
         
         if nums[m] >= nums[l]:
-            print(f"  Left half is sorted, search right half")
+            output += f"\n  Left half is sorted, search right half"
             l = m + 1
         else:
-            print(f"  Right half is sorted, search left half")
+            output += f"\n  Right half is sorted, search left half"
             r = m - 1
         step += 1
+    
+    return output
 
 # EXAMPLE
 # main([3, 4, 5, 1, 2])

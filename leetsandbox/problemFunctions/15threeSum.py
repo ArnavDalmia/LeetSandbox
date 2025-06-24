@@ -38,14 +38,18 @@ def threeSumFunctionality(nums):
 
 def main(nums):
     result = threeSumFunctionality(nums)
-    print(f"Array: {nums}")
-    print(f"Three sum triplets that equal 0:")
+    
+    output = f"""Array: {nums}
+Three sum triplets that equal 0:"""
+    
     if result:
         for triplet in result:
-            print(f"  {triplet}")
-        print(f"Total triplets found: {len(result)}")
+            output += f"\n  {triplet}"
+        output += f"\nTotal triplets found: {len(result)}"
     else:
-        print("  No triplets found that sum to 0")
+        output += "\n  No triplets found that sum to 0"
+    
+    return output
 
 # EXAMPLE
 # main([-1, 0, 1, 2, -1, -4])

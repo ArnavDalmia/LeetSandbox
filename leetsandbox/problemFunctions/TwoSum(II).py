@@ -16,9 +16,9 @@ def main(numbers, target):
     temp = twoSumIIFunctionality(numbers, target)
     print("Indexes of two numbers are: ")
     if temp != []:
-        print(temp)
+        return(temp)
     else:
-        print("ERROR: Pair does not exist. Try with another target or sorted array.")
+        return("ERROR: Pair does not exist. Try with another target or sorted array.")
 
 # EXAMPLE
 #main([2,7,11,15], 9)

@@ -10,11 +10,14 @@ def containsDuplicateFunctionality(nums):
 
 def main(nums):
     result = containsDuplicateFunctionality(nums)
-    print(f"Array: {nums}")
+    
+    output = f"Array: {nums}\n"
     if result:
-        print("Result: Contains duplicate")
+        output += "Result: Contains duplicate"
     else:
-        print("Result: No duplicates found")
+        output += "Result: No duplicates found"
+    
+    return output
 
 # EXAMPLE
 # main([1, 2, 3, 1])

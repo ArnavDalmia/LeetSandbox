@@ -41,9 +41,10 @@ def longestPalindromeFunctionality(s):
 
 def main(s):
     result = longestPalindromeFunctionality(s)
-    print(f"Input string: '{s}'")
-    print(f"Longest palindromic substring: '{result}'")
-    print(f"Length: {len(result)}")
+    
+    output = f"""Input string: '{s}'
+Longest palindromic substring: '{result}'
+Length: {len(result)}"""
     
     # Show all palindromes found
     palindromes = set()
@@ -62,7 +63,9 @@ def main(s):
             l -= 1
             r += 1
     
-    print(f"All palindromes found: {sorted(palindromes, key=len, reverse=True)}")
+    output += f"\nAll palindromes found: {sorted(palindromes, key=len, reverse=True)}"
+    
+    return output
 
 # EXAMPLE
 # main("babad")

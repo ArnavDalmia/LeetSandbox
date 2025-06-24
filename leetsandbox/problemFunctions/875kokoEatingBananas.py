@@ -24,22 +24,23 @@ def kokoEatingBananasFunctionality(piles, h):
 
 def main(piles, h):
     result = kokoEatingBananasFunctionality(piles, h)
-    print(f"Banana piles: {piles}")
-    print(f"Hours available: {h}")
-    print(f"Minimum eating speed (bananas per hour): {result}")
+    
+    output = f"""Banana piles: {piles}
+Hours available: {h}
+Minimum eating speed (bananas per hour): {result}"""
     
     # Verify the solution
     total_hours = 0
     for pile in piles:
         hours_for_pile = math.ceil(pile / result)
         total_hours += hours_for_pile
-        print(f"  Pile of {pile} bananas takes {hours_for_pile} hours at speed {result}")
+        output += f"\n  Pile of {pile} bananas takes {hours_for_pile} hours at speed {result}"
     
-    print(f"Total hours needed: {total_hours}")
-    print(f"Within time limit: {'✓' if total_hours <= h else '✗'}")
+    output += f"\nTotal hours needed: {total_hours}"
+    output += f"\nWithin time limit: {'✓' if total_hours <= h else '✗'}"
     
     # Show binary search process
-    print("\nBinary search process:")
+    output += "\n\nBinary search process:"
     left, right = 1, max(piles)
     step = 1
     
@@ -47,15 +48,17 @@ def main(piles, h):
         k = (left + right) // 2
         total = sum(math.ceil(pile / k) for pile in piles)
         
-        print(f"  Step {step}: k={k}, total_hours={total}")
+        output += f"\n  Step {step}: k={k}, total_hours={total}"
         
         if total <= h:
-            print(f"    {total} <= {h}: Can finish in time, try slower speed")
+            output += f"\n    {total} <= {h}: Can finish in time, try slower speed"
             right = k - 1
         else:
-            print(f"    {total} > {h}: Too slow, need faster speed")
+            output += f"\n    {total} > {h}: Too slow, need faster speed"
             left = k + 1
         step += 1
+    
+    return output
 
 # EXAMPLE
 # main([3, 6, 7, 11], 8)

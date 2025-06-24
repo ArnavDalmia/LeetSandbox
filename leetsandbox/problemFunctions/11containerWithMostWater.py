@@ -23,17 +23,19 @@ def containerWithMostWaterFunctionality(nums):
 
 def main(height):
     result = containerWithMostWaterFunctionality(height)
-    print(f"Heights: {height}")
-    print(f"Maximum water area: {result}")
     
     # Show how the algorithm works
-    print("Two-pointer approach explanation:")
+    explanation = f"""Heights: {height}
+Maximum water area: {result}
+
+Two-pointer approach explanation:"""
+    
     left, right = 0, len(height) - 1
     max_area = 0
     while left < right:
         current_area = min(height[left], height[right]) * (right - left)
         max_area = max(max_area, current_area)
-        print(f"  Left: {left} (height={height[left]}), Right: {right} (height={height[right]}), Area: {current_area}")
+        explanation += f"\n  Left: {left} (height={height[left]}), Right: {right} (height={height[right]}), Area: {current_area}"
         
         if height[left] < height[right]:
             left += 1
@@ -42,6 +44,8 @@ def main(height):
         
         if left >= right:
             break
+    
+    return explanation
 
 # EXAMPLE
 # main([1, 8, 6, 2, 5, 4, 8, 3, 7])

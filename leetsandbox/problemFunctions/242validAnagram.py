@@ -14,12 +14,16 @@ def validAnagramFunctionality(s, t):
 
 def main(s, t):
     result = validAnagramFunctionality(s, t)
-    print(f"String 1: '{s}'")
-    print(f"String 2: '{t}'")
+    
+    output = f"""String 1: '{s}'
+String 2: '{t}'"""
+    
     if result:
-        print("Result: Valid anagram")
+        output += "\nResult: Valid anagram"
     else:
-        print("Result: Not a valid anagram")
+        output += "\nResult: Not a valid anagram"
+    
+    return output
 
 # EXAMPLE
 # main("anagram", "nagaram")

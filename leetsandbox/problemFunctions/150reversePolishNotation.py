@@ -25,11 +25,13 @@ def reversePolishNotationFunctionality(tokens):
 
 def main(tokens):
     result = reversePolishNotationFunctionality(tokens)
-    print(f"RPN expression: {tokens}")
-    print(f"Result: {result}")
+    
+    output = f"""RPN expression: {tokens}
+Result: {result}
+
+Step-by-step evaluation:"""
     
     # Show step-by-step evaluation
-    print("Step-by-step evaluation:")
     stack = []
     for i, token in enumerate(tokens):
         if token in ["+", "-", "*", "/"]:
@@ -44,10 +46,12 @@ def main(tokens):
             elif token == "/":
                 result_step = int(float(num2) / num1)
             stack.append(result_step)
-            print(f"  Step {i+1}: {num2} {token} {num1} = {result_step}, Stack: {stack}")
+            output += f"\n  Step {i+1}: {num2} {token} {num1} = {result_step}, Stack: {stack}"
         else:
             stack.append(int(token))
-            print(f"  Step {i+1}: Push {token}, Stack: {stack}")
+            output += f"\n  Step {i+1}: Push {token}, Stack: {stack}"
+    
+    return output
 
 # EXAMPLE
 # main(["2", "1", "+", "3", "*"])

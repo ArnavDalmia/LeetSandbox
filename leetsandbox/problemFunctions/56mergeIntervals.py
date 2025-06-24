@@ -15,27 +15,30 @@ def mergeIntervalsFunctionality(intervals):
 
 def main(intervals):
     result = mergeIntervalsFunctionality(intervals)
-    print(f"Input intervals: {intervals}")
-    print(f"Merged intervals: {result}")
+    
+    output = f"""Input intervals: {intervals}
+Merged intervals: {result}"""
     
     # Show the merge process step by step
     if intervals:
-        print("Merge process:")
+        output += "\nMerge process:"
         sorted_intervals = sorted(intervals)
-        print(f"  After sorting: {sorted_intervals}")
+        output += f"\n  After sorting: {sorted_intervals}"
         
         merged = [sorted_intervals[0]]
-        print(f"  Start with: {merged}")
+        output += f"\n  Start with: {merged}"
         
         for i, (start, end) in enumerate(sorted_intervals[1:], 1):
             lastEnd = merged[-1][1]
             if start <= lastEnd:
                 old_interval = merged[-1][:]
                 merged[-1][1] = max(lastEnd, end)
-                print(f"  Step {i}: Merge {old_interval} and [{start}, {end}] -> {merged[-1]}")
+                output += f"\n  Step {i}: Merge {old_interval} and [{start}, {end}] -> {merged[-1]}"
             else:
                 merged.append([start, end])
-                print(f"  Step {i}: Add [{start}, {end}] -> Current: {merged}")
+                output += f"\n  Step {i}: Add [{start}, {end}] -> Current: {merged}"
+    
+    return output
 
 # EXAMPLE
 # main([[1, 3], [2, 6], [8, 10], [15, 18]])

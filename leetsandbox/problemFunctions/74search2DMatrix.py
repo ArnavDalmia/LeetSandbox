@@ -39,58 +39,61 @@ def search2DMatrixFunctionality(matrix, target):
 
 def main(matrix, target):
     result = search2DMatrixFunctionality(matrix, target)
-    print(f"2D Matrix:")
+    
+    output = "2D Matrix:\n"
     for row in matrix:
-        print(f"  {row}")
-    print(f"Target: {target}")
-    print(f"Found: {result}")
+        output += f"  {row}\n"
+    output += f"Target: {target}\n"
+    output += f"Found: {result}\n"
     
     # Show the search process
-    print("\nSearch process:")
+    output += "\nSearch process:\n"
     rows = len(matrix)
     if rows == 0:
-        print("  Empty matrix")
-        return
+        output += "  Empty matrix"
+        return output
     
     cols = len(matrix[0])
-    print(f"  Matrix bounds: {matrix[0][0]} to {matrix[rows-1][cols-1]}")
+    output += f"  Matrix bounds: {matrix[0][0]} to {matrix[rows-1][cols-1]}\n"
     
     if not (matrix[0][0] <= target <= matrix[rows-1][cols-1]):
-        print("  Target outside matrix bounds")
-        return
+        output += "  Target outside matrix bounds"
+        return output
     
     # Binary search for row
     l, r = 0, rows - 1
     step = 1
     while l <= r:
         m = (l + r) // 2
-        print(f"  Step {step}: Checking row {m}: [{matrix[m][0]} ... {matrix[m][cols-1]}]")
+        output += f"  Step {step}: Checking row {m}: [{matrix[m][0]} ... {matrix[m][cols-1]}]\n"
         
         if matrix[m][0] > target:
-            print(f"    Target {target} < {matrix[m][0]}, search upper rows")
+            output += f"    Target {target} < {matrix[m][0]}, search upper rows\n"
             r = m - 1
         elif matrix[m][cols-1] < target:
-            print(f"    Target {target} > {matrix[m][cols-1]}, search lower rows")
+            output += f"    Target {target} > {matrix[m][cols-1]}, search lower rows\n"
             l = m + 1
         else:
-            print(f"    Target {target} might be in row {m}, searching row...")
+            output += f"    Target {target} might be in row {m}, searching row...\n"
             # Binary search within the row
             row_l, row_r = 0, cols - 1
             row_step = 1
             while row_l <= row_r:
                 row_m = (row_l + row_r) // 2
-                print(f"      Row step {row_step}: Checking position {row_m}, value {matrix[m][row_m]}")
+                output += f"      Row step {row_step}: Checking position {row_m}, value {matrix[m][row_m]}\n"
                 if matrix[m][row_m] == target:
-                    print(f"      Found target at row {m}, col {row_m}!")
-                    return
+                    output += f"      Found target at row {m}, col {row_m}!"
+                    return output
                 elif matrix[m][row_m] > target:
                     row_r = row_m - 1
                 else:
                     row_l = row_m + 1
                 row_step += 1
-            print(f"      Target not found in row {m}")
-            return
+            output += f"      Target not found in row {m}"
+            return output
         step += 1
+    
+    return output
 
 # EXAMPLE
 # main([[1, 4, 7, 11], [2, 5, 8, 12], [3, 6, 9, 16]], 5)

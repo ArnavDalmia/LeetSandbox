@@ -21,11 +21,11 @@ class MinStack:
         return self.min_stack[-1] if self.min_stack else None
 
 def main():
-    print("MinStack operations demonstration:")
+    output = "MinStack operations demonstration:\n"
     
     # Create stack
     stack = MinStack()
-    print("Created MinStack")
+    output += "Created MinStack\n"
     
     # Test operations
     operations = [
@@ -41,17 +41,19 @@ def main():
     for op, val in operations:
         if op == "push":
             stack.push(val)
-            print(f"Push {val} -> Stack: {stack.obj}, Min: {stack.getMin()}")
+            output += f"Push {val} -> Stack: {stack.obj}, Min: {stack.getMin()}\n"
         elif op == "pop":
             popped = stack.top()
             stack.pop()
-            print(f"Pop {popped} -> Stack: {stack.obj}, Min: {stack.getMin()}")
+            output += f"Pop {popped} -> Stack: {stack.obj}, Min: {stack.getMin()}\n"
         elif op == "top":
             result = stack.top()
-            print(f"Top: {result}")
+            output += f"Top: {result}\n"
         elif op == "getMin":
             result = stack.getMin()
-            print(f"Min: {result}")
+            output += f"Min: {result}\n"
+    
+    return output.rstrip()
 
 # EXAMPLE
 # main()

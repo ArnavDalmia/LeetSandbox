@@ -29,11 +29,14 @@ def validParenthesisFunctionality(s):
 
 def main(s):
     result = validParenthesisFunctionality(s)
-    print(f"Input string: '{s}'")
+    
+    output = f"Input string: '{s}'\n"
     if result:
-        print("Result: Valid parentheses")
+        output += "Result: Valid parentheses"
     else:
-        print("Result: Invalid parentheses")
+        output += "Result: Invalid parentheses"
+    
+    return output
 
 # EXAMPLE
 # main("()[]{}")

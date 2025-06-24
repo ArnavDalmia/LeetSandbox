@@ -20,12 +20,13 @@ def longestSubstringWithoutRepeatingFunctionality(s):
 
 def main(s):
     result = longestSubstringWithoutRepeatingFunctionality(s)
-    print(f"Input string: '{s}'")
-    print(f"Length of longest substring without repeating characters: {result}")
+    
+    output = f"""Input string: '{s}'
+Length of longest substring without repeating characters: {result}"""
     
     # Show the sliding window process
     if s:
-        print("Sliding window process:")
+        output += "\nSliding window process:"
         letter = {}
         start = 0
         maxlength = 0
@@ -39,9 +40,11 @@ def main(s):
                 maxlength = current_length
                 best_substring = s[start:end+1]
             letter[char] = end
-            print(f"  Position {end}: '{char}' -> Window: '{s[start:end+1]}' (length: {current_length})")
+            output += f"\n  Position {end}: '{char}' -> Window: '{s[start:end+1]}' (length: {current_length})"
         
-        print(f"Longest substring found: '{best_substring}'")
+        output += f"\nLongest substring found: '{best_substring}'"
+    
+    return output
 
 # EXAMPLE
 # main("abcabcbb")

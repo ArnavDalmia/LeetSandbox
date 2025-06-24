@@ -23,11 +23,14 @@ def validPalindromeFunctionality(s):
 
 def main(s):
     result = validPalindromeFunctionality(s)
-    print(f"Input string: '{s}'")
+    
+    output = f"Input string: '{s}'\n"
     if result:
-        print("Result: Valid palindrome")
+        output += "Result: Valid palindrome"
     else:
-        print("Result: Not a valid palindrome")
+        output += "Result: Not a valid palindrome"
+    
+    return output
 
 # EXAMPLE
 # main("A man, a plan, a canal: Panama")
