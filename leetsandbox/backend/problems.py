@@ -12,7 +12,6 @@ PROBLEMS = {
         "link": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description",
     },
     "reverse-string": {
-        "number": 344,
         "originLeetCode": False,
         "params": {"s": "str"},
         "link": "https://leetcode.com/problems/reverse-string/",
