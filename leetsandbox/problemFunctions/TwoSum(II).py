@@ -21,4 +21,4 @@ def main(numbers, target):
         print("ERROR: Pair does not exist. Try with another target or sorted array.")
 
 # EXAMPLE
-# main([2,7,11,15], 9)
+#main([2,7,11,15], 9)
