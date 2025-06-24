@@ -13,7 +13,10 @@ app = FastAPI()
 # This is crucial for local development from file:// or a different port.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In a real production app, restrict this to the frontend domain
+    allow_origins=[
+        "http://127.0.0.1:5500",  # For local development (or your port)
+        "https://arnavdalmia.github.io/LeetSandbox/", # Your live frontend URL
+    ],
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
