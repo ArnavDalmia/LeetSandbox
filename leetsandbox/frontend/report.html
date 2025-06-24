@@ -3,27 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LeetSandbox</title>
+    <title>LeetSandbox - Report a Problem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        main.container {
-            max-width: 800px;
-        }
-        #output {
-            background-color: var(--pico-card-background-color);
-            border: 1px solid var(--pico-card-border-color);
-            padding: 1rem;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        .capitalize {
-            text-transform: capitalize;
-        }
-    </style>
 </head>
 <body>
     <nav class="container-fluid">
@@ -41,25 +26,29 @@
     </nav>
 
     <main class="container">
-        <header>
-            <h1 id="problem-title" class="capitalize">Loading Problem...</h1>
-            <a href="problemList.html">← Back to problems</a>
+        <header style="text-align: center; padding: 2rem 0;">
+            <h1>Report a Problem</h1>
+            <p>The platform is still very new, and so we would really appreciate any suggestions or any problems you may encounter. Thanks so much!</p>
         </header>
+        
+        <div class="form-container">
+            <hr>
+            <form action="https://formspree.io/f/movwkglb" method="POST">
+                <label for="name">Name</label>
+                <div class="form-row">
+                    <input type="text" name="firstName" placeholder="First Name" required>
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                </div>
 
-        <section>
-            <form id="run-form">
-                <h2>Inputs</h2>
-                <div id="input-fields" aria-busy="true"></div>
-                <button type="submit" id="run-button">Run</button>
+                <label for="details">Please explain what your suggestion is, or what the problem you are encountering is. Thanks for your support!</label>
+                <textarea name="details" rows="5"></textarea>
+
+                <button type="submit">Submit</button>
             </form>
-        </section>
-
-        <section id="output-container">
-            <h2>Output</h2>
-            <pre id="output">Click "Run" to see the result.</pre>
-        </section>
+        </div>
+        
     </main>
-    
+
     <footer class="container">
         <small>
             <a href="report.html">Report</a> • <a href="#">Contact</a> • <a href="#">Privacy Policy</a>
@@ -67,7 +56,5 @@
             © 2025 LeetSandbox
         </small>
     </footer>
-
-    <script src="main.js"></script>
 </body>
 </html> 
