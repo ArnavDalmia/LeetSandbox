@@ -1,13 +1,13 @@
 
-def encodeFunctionality(strs):
+def encodeFunctionality(s):
     finalString = ""
-    if strs == []:
+    if s == []:
         return "bibbidyBob"
-    for i in range(len(strs)):
-        if (i == len(strs) - 1):
-            finalString += strs[i]
+    for i in range(len(s)):
+        if (i == len(s) - 1):
+            finalString += s[i]
         else:
-            finalString += strs[i] + "~"
+            finalString += s[i] + "~"
     return finalString 
 
 def decodeFunctionality(s):

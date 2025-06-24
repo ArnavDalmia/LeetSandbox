@@ -17,4 +17,11 @@ PROBLEMS = {
         "params": {"s": "str"},
         "link": "https://leetcode.com/problems/reverse-string/",
     },
+    "ValidParentheses": {
+        "number": 20,
+        "originLeetCode": True,
+        "params": {"s": "str"},
+        "link": "https://leetcode.com/problems/valid-parentheses/",
+    },
+
 } 
