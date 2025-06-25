@@ -160,10 +160,11 @@ details ul {
 /* Footer */
 footer {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 0.75rem 0; /* Further reduced vertical padding */
     margin-top: auto;
-    background-color: var(--pico-card-background-color);
-    border-top: 1px solid var(--pico-card-border-color);
+    background-color: #08121c; /* Slightly different dark blue */
+    /* border-top: 1px solid #1b2f45; */
+    width: 100%; /* Ensure it spans the full width */
 }
 
 /* Fix button font */
@@ -181,4 +182,16 @@ button, [role="button"] {
     padding: 0.75rem;
     border-radius: 8px;
     background-color: var(--pico-card-background-color);
+}
+
+.problem-header {
+    margin-bottom: 1.5rem;
+}
+
+.problem-page-notice {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--pico-muted-color);
+    text-align: center;
+    margin-bottom: 2rem;
 } 

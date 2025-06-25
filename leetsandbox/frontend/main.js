@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const problemTitle = document.getElementById('problem-title');
     const inputFields = document.getElementById('input-fields');
-    const constraintsContainer = document.getElementById('constraints-notice-container');
     const runForm = document.getElementById('run-form');
     const runButton = document.getElementById('run-button');
     const outputPre = document.getElementById('output');
@@ -39,12 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.textContent = problemTitle.textContent;
                 problemTitle.innerHTML = '';
                 problemTitle.appendChild(link);
-
-                // Add the constraints notice
-                const notice = document.createElement('p');
-                notice.className = 'constraints-notice';
-                notice.innerHTML = `Note: The provided solution is optimized for the original problem's constraints. Please <a href="${problem.link}" target="_blank" rel="noopener noreferrer">check the constraints</a> for details on input ranges.`;
-                constraintsContainer.appendChild(notice);
             }
 
             buildForm(problem.params);
