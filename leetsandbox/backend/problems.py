@@ -57,12 +57,12 @@ PROBLEMS = {
         "params": {"nums": "List[int]"},
         "link": "https://leetcode.com/problems/longest-consecutive-sequence/",
     },
-    "LinkedListCycle": {
-        "number": 141,
-        "originLeetCode": True,
-        "params": {"values": "List[int]", "cycle_pos": "int"},
-        "link": "https://leetcode.com/problems/linked-list-cycle/",
-    },
+    # "LinkedListCycle": {
+    #     "number": 141,
+    #     "originLeetCode": True,
+    #     "params": {"values": "List[int]", "cycle_pos": "int"},
+    #     "link": "https://leetcode.com/problems/linked-list-cycle/",
+    # },
     "EvaluateReversePolishNotation": {
         "number": 150,
         "originLeetCode": True,
