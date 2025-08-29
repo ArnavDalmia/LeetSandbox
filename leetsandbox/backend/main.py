@@ -3,17 +3,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, Any, List, Optional
 
-# Use absolute imports for clarity and robustness
 from backend.runner import safe_exec
 from backend.problems import PROBLEMS
 
 app = FastAPI()
-
-# Configure CORS to allow the frontend to communicate with the backend.
-# This is crucial for local development from file:// or a different port.
+#models setup
+# Configure CORS to allow the frontend to communicate with the backend for local development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Allow all origins for debugging
+    allow_origins=["*"], # Allow all origins for debugging, can switch later once everyting works
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
@@ -74,6 +72,5 @@ async def run_code(request: RunRequest):
             exec_ms=0,
         )
 
-    # The runner is now async, so we must await its result
     result_dict = await safe_exec(request.slug, request.inputs)
     return RunResponse(**result_dict) 
