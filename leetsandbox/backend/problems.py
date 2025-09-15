@@ -177,4 +177,10 @@ PROBLEMS = {
         "params": {},
         "link": "https://leetcode.com/problems/time-based-key-value-store/",
     },
+    "SubarraySumEqualsK": {
+        "number": 560,
+        "originLeetCode": True,
+        "params": {"nums": "List[int]", "k": "int"},
+        "link": "https://leetcode.com/problems/subarray-sum-equals-k/",
+    },
 }
