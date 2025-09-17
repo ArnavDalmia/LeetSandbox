@@ -136,6 +136,16 @@ IMPORTANT RULES:
 7. Encourage the student to think through the problem and try to solve it themselves. Don't give them the solution directly. Feel free to give them hints.
 
 8. Based on the user's questions and difficulty, give them custom testcases to try.
+
+FORMATTING RULES:
+- Use proper spacing between sections
+- Use bullet points (•) for lists
+- Use numbered lists (1., 2., 3.) for step-by-step instructions
+- Use line breaks to separate different concepts
+- Use **bold** for important terms
+- Use `code formatting` for variables and code snippets
+- Keep paragraphs short and readable
+- Use clear headings for different sections
 """
         
         # Call OpenAI API

@@ -216,9 +216,44 @@ document.addEventListener('DOMContentLoaded', () => {
     function addMessage(text, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}`;
-        messageDiv.textContent = text;
+        
+        if (sender === 'ai') {
+            // Format AI responses with proper HTML formatting
+            messageDiv.innerHTML = formatAIResponse(text);
+        } else {
+            messageDiv.textContent = text;
+        }
+        
         chatMessages.appendChild(messageDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function formatAIResponse(text) {
+        // Convert markdown-like formatting to HTML
+        let formatted = text
+            // Bold text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            // Code formatting
+            .replace(/`(.*?)`/g, '<code>$1</code>')
+            // Bullet points
+            .replace(/^• (.*$)/gm, '<li>$1</li>')
+            // Numbered lists
+            .replace(/^(\d+)\. (.*$)/gm, '<li>$1. $2</li>')
+            // Line breaks
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/\n/g, '<br>');
+        
+        // Wrap in paragraphs
+        formatted = '<p>' + formatted + '</p>';
+        
+        // Convert lists to proper HTML
+        formatted = formatted.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+        
+        // Clean up empty paragraphs
+        formatted = formatted.replace(/<p><\/p>/g, '');
+        formatted = formatted.replace(/<p><br><\/p>/g, '');
+        
+        return formatted;
     }
 
     function showTypingIndicator() {
