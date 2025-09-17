@@ -32,14 +32,18 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #000000;
             border: none;
             color: white;
-            font-size: 24px;
+            font-size: 14px;
+            font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .chat-button:hover {
@@ -66,29 +70,29 @@
         }
         
         .chat-container {
-            background: white;
+            background: #f7f7f8;
             border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            height: 70%;
-            max-height: 600px;
+            width: 95%;
+            max-width: 800px;
+            height: 85%;
+            max-height: 800px;
             display: flex;
             flex-direction: column;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         .chat-header {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e5e5;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #f8f9fa;
+            background: #ffffff;
             border-radius: 12px 12px 0 0;
         }
         
         .chat-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: #333;
         }
@@ -109,18 +113,20 @@
         
         .chat-messages {
             flex: 1;
-            padding: 20px;
+            padding: 16px 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
         
         .message {
-            max-width: 80%;
-            padding: 12px 16px;
+            max-width: 85%;
+            padding: 10px 14px;
             border-radius: 18px;
             word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.4;
         }
         
         .message.user {
@@ -131,30 +137,35 @@
         }
         
         .message.ai {
-            background: #f1f3f4;
+            background: #ffffff;
             color: #333;
             align-self: flex-start;
             border-bottom-left-radius: 4px;
+            border: 1px solid #e5e5e5;
         }
         
         .chat-input-container {
-            padding: 20px;
-            border-top: 1px solid #eee;
+            padding: 16px 20px;
+            border-top: 1px solid #e5e5e5;
             display: flex;
             gap: 10px;
+            background: #ffffff;
+            border-radius: 0 0 12px 12px;
         }
         
         .chat-input {
             flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
+            padding: 10px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
             outline: none;
             font-size: 14px;
+            background: #ffffff;
         }
         
         .chat-input:focus {
             border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
         }
         
         .chat-send {
@@ -162,13 +173,13 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .chat-send:hover {
@@ -183,12 +194,14 @@
         .typing-indicator {
             display: none;
             align-self: flex-start;
-            background: #f1f3f4;
-            padding: 12px 16px;
+            background: #ffffff;
+            padding: 10px 14px;
             border-radius: 18px;
             border-bottom-left-radius: 4px;
             color: #666;
             font-style: italic;
+            font-size: 14px;
+            border: 1px solid #e5e5e5;
         }
     </style>
 </head>
@@ -240,7 +253,7 @@
 
     <!-- Chat Button -->
     <button class="chat-button" id="chatButton" title="Ask AI for help">
-        💬
+        AI
     </button>
 
     <!-- Chat Overlay -->
