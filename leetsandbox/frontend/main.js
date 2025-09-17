@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Dynamically set API URL based on hostname
+    // only useful in local host
     const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
     const API_BASE_URL = isLocal ? 'http://127.0.0.1:8001' : 'https://leetsandbox-api.onrender.com'; // <-- IMPORTANT
 
@@ -146,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         runButton.setAttribute('aria-busy', isLoading ? 'true' : 'false');
     }
 
-    // Chat functionality
+    // chat functionality
     const chatButton = document.getElementById('chatButton');
     const chatOverlay = document.getElementById('chatOverlay');
     const chatClose = document.getElementById('chatClose');
@@ -155,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatSend = document.getElementById('chatSend');
     const typingIndicator = document.getElementById('typingIndicator');
 
-    // Chat event listeners
+    // event listeners
     chatButton.addEventListener('click', () => {
         chatOverlay.classList.add('active');
         chatInput.focus();
@@ -165,14 +166,14 @@ document.addEventListener('DOMContentLoaded', () => {
         chatOverlay.classList.remove('active');
     });
 
-    // Close char,  clicking outside
+    // clicking outside = close
     chatOverlay.addEventListener('click', (e) => {
         if (e.target === chatOverlay) {
             chatOverlay.classList.remove('active');
         }
     });
 
-    // Send message
+    // Send message with enter
     chatSend.addEventListener('click', sendMessage);
     chatInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -218,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDiv.className = `message ${sender}`;
         
         if (sender === 'ai') {
-            // Format AI responses with proper HTML formatting
+            // Format AI responses using preposterous html formatting
             messageDiv.innerHTML = formatAIResponse(text);
         } else {
             messageDiv.textContent = text;
@@ -228,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function formatAIResponse(text) {
+    function formatAIResponse(text) { //hateful formatting for the AI responses, overlay gives annoying problems
         // Convert markdown-like formatting to HTML
         let formatted = text
             // Bold text

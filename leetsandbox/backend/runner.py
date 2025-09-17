@@ -3,20 +3,18 @@ import importlib
 import asyncio
 from typing import Dict, Any
 
-def _slug_to_camel_case(slug: str) -> str:
-    """Converts a kebab-case slug like 'two-sum' to 'twoSum'."""
+def _slug_to_camel_case(slug: str) -> str: #copied function for format
+    #Converts a kebab-case slug like 'two-sum' to 'twoSum'
     parts = slug.split('-')
     return parts[0] + ''.join(p.capitalize() for p in parts[1:])
 
 def _execute_solution(slug: str, inputs: Dict[str, Any]) -> Any:
-    """
-    Synchronously imports and runs the solution's main function.
-    This function is designed to be run in a separate thread.
-    """
+    # Synchronously imports and runs the solution's main function. This function is designed to be run in a separate thread.
+    
     module_name = _slug_to_camel_case(slug)
     try:
         module_path = f"problemFunctions.{module_name}"
-        module = importlib.import_module(module_path)
+        module = importlib.import_module(module_path) # represents the solution code
     except ImportError as e:
         raise Exception(f"Could not import solution for '{slug}'. Make sure '{module_path.replace('.', '/')}.py' exists.") from e
 
@@ -27,9 +25,8 @@ def _execute_solution(slug: str, inputs: Dict[str, Any]) -> Any:
 
 
 async def safe_exec(slug: str, inputs: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Executes the main function for a given slug with a 2-second timeout using asyncio.
-    """
+    #runs the main function for a given problem/slug with a 2-second timeout using asyncio
+    
     start_time = time.time()
     try:
         # Run the synchronous (blocking) solution in a separate thread to avoid

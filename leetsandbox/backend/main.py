@@ -9,10 +9,7 @@ import openai
 from backend.runner import safe_exec
 from backend.problems import PROBLEMS
 
-# Load environment variables
-load_dotenv()
-
-# Initialize OpenAI client
+load_dotenv() #env vars
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = FastAPI()
@@ -36,34 +33,31 @@ class ProblemInfo(BaseModel):
     link: Optional[str] = None
 
 
-class RunRequest(BaseModel):
+class RunRequest(BaseModel): #runner
     slug: str
     inputs: Dict[str, Any]
 
 
-class RunResponse(BaseModel):
+class RunResponse(BaseModel): #responses from backend runners
     status: str
     stdout: str
     stderr: str
     exec_ms: int
 
 
-class ChatRequest(BaseModel):
+class ChatRequest(BaseModel): #AI solution explainer req
     problem_slug: str
     message: str
 
 
-class ChatResponse(BaseModel):
+class ChatResponse(BaseModel): #AI Solution explainer responses
     response: str
     status: str
 
 
 @app.get("/problems", response_model=List[ProblemInfo])
 async def get_problems():
-    """
-    Returns a list of available problems, including their slugs and
-    parameter definitions, so the frontend can build submission forms.
-    """
+    # Returns a list of all problems, with other metadadta, for the frontend to handle and build submission forms
     return [
         {
             "slug": slug,
@@ -78,10 +72,9 @@ async def get_problems():
 
 @app.post("/run", response_model=RunResponse)
 async def run_code(request: RunRequest):
-    """
-    Receives a problem slug and user inputs, retrieves the corresponding
-    solution code, executes it safely, and returns the result.
-    """
+    
+    # Receives a problem slug and user inputs, retrieves the corresponding solution code, executes it safely, and returns the result.
+    
     problem_data = PROBLEMS.get(request.slug)
     if not problem_data:
         return RunResponse(
@@ -97,11 +90,8 @@ async def run_code(request: RunRequest):
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat_with_ai(request: ChatRequest):
-    """
-    Chat endpoint that provides AI-powered explanations for coding problems.
-    The AI has full context about the current problem being worked on.
-    """
-    try:
+    # open ai api endpoint
+    try: # basically wrapping anything related to the openai api endpoint
         # Get problem details
         problem_data = PROBLEMS.get(request.problem_slug)
         if not problem_data:
@@ -110,7 +100,7 @@ async def chat_with_ai(request: ChatRequest):
                 status="error"
             )
         
-        # Build problem context for the AI
+        # Build context for the AI
         problem_context = f"""
 Problem: {request.problem_slug}
 LeetCode Number: {problem_data.get('number', 'N/A')}
@@ -148,10 +138,10 @@ FORMATTING RULES:
 - Use clear headings for different sections
 """
         
-        # Call OpenAI API
+        # req
         client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         response = client.responses.create(
-            model="o4-mini",
+            model="o4-mini", #using o4-mini for a good fast reasoning model, transitioned from GPT-4
             tools=[{"type": "web_search"}],
             input="You are an expert coding tutor specializing in algorithm problems and data structures. Here is the context : " + problem_context
         )
@@ -163,7 +153,7 @@ FORMATTING RULES:
             status="success"
         )
         
-    except Exception as e:
+    except Exception as e: #todo : error handle better, backup?
         return ChatResponse(
             response=f"Sorry, I encountered an error: {str(e)}",
             status="error"

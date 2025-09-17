@@ -1,3 +1,4 @@
+# for now maintaining a hashmap of problems, could also use a json, but this was easier, should be an easy transition, can and will use a db in the future.
 PROBLEMS = {
     "TwoSum": {
         "number": 1,
