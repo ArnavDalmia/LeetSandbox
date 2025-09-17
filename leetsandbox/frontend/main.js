@@ -145,4 +145,88 @@ document.addEventListener('DOMContentLoaded', () => {
         runButton.disabled = isLoading;
         runButton.setAttribute('aria-busy', isLoading ? 'true' : 'false');
     }
+
+    // Chat functionality
+    const chatButton = document.getElementById('chatButton');
+    const chatOverlay = document.getElementById('chatOverlay');
+    const chatClose = document.getElementById('chatClose');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const chatSend = document.getElementById('chatSend');
+    const typingIndicator = document.getElementById('typingIndicator');
+
+    // Chat event listeners
+    chatButton.addEventListener('click', () => {
+        chatOverlay.classList.add('active');
+        chatInput.focus();
+    });
+
+    chatClose.addEventListener('click', () => {
+        chatOverlay.classList.remove('active');
+    });
+
+    // Close char,  clicking outside
+    chatOverlay.addEventListener('click', (e) => {
+        if (e.target === chatOverlay) {
+            chatOverlay.classList.remove('active');
+        }
+    });
+
+    // Send message
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        addMessage(message, 'user');
+        chatInput.value = '';
+        showTypingIndicator();
+
+        // Send to backend
+        fetch(`${API_BASE_URL}/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                problem_slug: slug,
+                message: message
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            hideTypingIndicator();
+            if (data.status === 'success') {
+                addMessage(data.response, 'ai');
+            } else {
+                addMessage('Sorry, I encountered an error. Please try again.', 'ai');
+            }
+        })
+        .catch(error => {
+            hideTypingIndicator();
+            addMessage('Sorry, I couldn\'t connect to the AI. Please check your connection and try again.', 'ai');
+            console.error('Chat error:', error);
+        });
+    }
+
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+        typingIndicator.style.display = 'block';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+        typingIndicator.style.display = 'none';
+    }
 }); 
