@@ -184,4 +184,28 @@ PROBLEMS = {
         "params": {"nums": "List[int]", "k": "int"},
         "link": "https://leetcode.com/problems/subarray-sum-equals-k/",
     },
+    "CourseSchedule": {
+        "number": 207,
+        "originLeetCode": True,
+        "params": {"numCourses": "int", "prerequisites": "List[List[int]]"},
+        "link": "https://leetcode.com/problems/course-schedule/",
+    },
+    "ClimbingStairs": {
+        "number": 70,
+        "originLeetCode": True,
+        "params": {"n": "int"},
+        "link": "https://leetcode.com/problems/climbing-stairs/",
+    },
+    "WordBreak": {
+        "number": 139,
+        "originLeetCode": True,
+        "params": {"s": "str", "wordDict": "List[str]"},
+        "link": "https://leetcode.com/problems/word-break/",
+    },
+    "NumberOfIslands": {
+        "number": 200,
+        "originLeetCode": True,
+        "params": {"grid": "List[List[str]]"},
+        "link": "https://leetcode.com/problems/number-of-islands/",
+    },
 }
